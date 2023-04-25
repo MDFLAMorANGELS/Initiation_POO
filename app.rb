@@ -6,10 +6,13 @@ Bundler.require
 # comme ça, tu peux faire User.new dans ce fichier d'application. Top.
 require_relative 'lib/user'
 require_relative 'lib/event'
-puts julie = User.new("j@gmail.com", 33)
-puts hecko = User.new("h@gmail.com", 33)
+
+puts julie = User.new("julie@email.com", 35) #je crée un premier User
+puts jean = User.new("jean@maimail.com", 22) #puis un second User
 puts bert = User.new("b@gmail.com", 33)
-puts my_event = Event.new("2019-01-13 09:00", 10, "standup quotidien", [julie.email, bert.email])
+my_event = Event.new("2019-01-13 09:00", 10, "standup quotidien", [julie, jean]) #et je les insère tous les deux dans un nouvel Event
+birthday = Event.new("2019-02-22 11:00", 70, "anniversaire", [julie, jean])
+meeting = WorkEvent.new("2019-01-17 09:00", 70, "réunion de travail", [julie, jean],"Paris") # je crée un WorkEvent
 
 
 binding.pry

@@ -1,28 +1,28 @@
 class User
-    attr_accessor :email, :age
-  
-    @@all_users = []
-  
-    def initialize(email, age)
-      validate_email(email)
-      validate_age(age)
-      @email = email
-      @age = age
-      @@all_users << self
+  attr_accessor :age, :email
+  @@all_users = []
+
+  def initialize(email, age)
+    @email = email
+    @age = age
+    @@all_users << self
+  end
+
+  def self.all
+    @@all_users
+  end
+
+  def self.find_by_email(email)
+    @@all_users.each do |user|
+
+      if user.email == email
+        return user
+      end
+
     end
 
-    def self.all
-      @@all_users
-    end
-  
-    private
-  
-    def validate_email(email)
-      raise ArgumentError, "Invalid email address" unless email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-    end
-  
-    def validate_age(age)
-      raise ArgumentError, "Age must be a positive integer" unless age.is_a?(Integer) && age > 0
-    end
+    puts "aucun utilisateur n'a cet email"
+    return false
+  end
 
 end
